@@ -71,6 +71,10 @@
   {% endfor %}
 {% endfor %}
 
+{% comment %} 
+  Please don't forget to make the content translateable through translating json files or through a section settings :)
+{% endcomment %}
+
 <discount-applier data-applieddiscounts="{{ valid_discounts }}">
   <div>
     <input type="text">
@@ -109,7 +113,7 @@
         if(this.verifyIfValidDiscount(cart)) {
           this.successText.classList.add("visible");
           this.alreadyAppliedDiscounts = discounts
-                                             }
+        }
         this.updateDomPrice(cart)
       } catch (error) {
         console.log(error)
@@ -119,8 +123,7 @@
       updateDomPrice(cart){
         // Replace with your own selectors
         this.parentElement.querySelector(".cart-subtotal__price").innerText = Shopify.formatMoney(cart.total_price)
-        // this.parentElement.querySelector(".total_discount").innerText = Shopify.formatMoney(cart.total_discount)
-        // this.parentElement.querySelector(".original_price").innerText = Shopify.formatMoney(cart.original_total_price)
+
       }
      async getCart(){
         const getCartResponse = await fetch("{{routes.cart_url}}.json");
